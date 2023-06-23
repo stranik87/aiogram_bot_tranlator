@@ -1,4 +1,4 @@
-TOKEN = '6080818801:AAEF3tPYDOMqEXDmojUBZR1QjkGoDjAEdDU'
+TOKEN = ''
 
 from translator import tarjimon
 
