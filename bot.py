@@ -6,9 +6,10 @@ from aiogram import Bot,Dispatcher,types
 
 from aiogram.utils import executor
 
+from flask import Flask , request
 TOKEN = os.environ.get('TOKEN')
 
-
+app = Flask(__name__)
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot=bot)
@@ -24,7 +25,22 @@ async def send_message(message:types.Message):
     tarjima = tarjimon(text=text)
     await message.answer(tarjima)
 
-
+@app.route('/',methods=['GET','POST'])
+def hallo_world():
+    if request.method == 'GET':
+        return 'webhook is working!'
+    
+    elif request.method == 'POST':
+        dp = Dispatcher(bot, None, workers=0)
+        return {'ok': True}
+    
+@app.route('/setwebhook')
+def set_webhook():
+    s = bot.set_webhook("https://stranik.pythonanywhere.com/")
+    if s:
+        return "webhook setup ok"
+    else:
+        return "webhook setup failed"
 
 if __name__=='__main__':
     executor.start_polling(dispatcher=dp)
