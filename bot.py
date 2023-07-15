@@ -36,7 +36,7 @@ def hallo_world():
     
 @app.route('/setwebhook')
 def set_webhook():
-    s = bot.set_webhook("https://stranik.pythonanywhere.com/")
+    s = bot.set_webhook("https://bottranslator.pythonanywhere.com/")
     if s:
         return "webhook setup ok"
     else:
